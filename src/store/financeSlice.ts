@@ -11,6 +11,7 @@ const initialState: FinanceState = {
   budgets: [],
 };
 
+
 const financeSlice = createSlice({
   name: 'finance',
   initialState,
