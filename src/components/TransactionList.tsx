@@ -41,32 +41,33 @@ const TransactionList = () => {
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-semibold">Transactions</h2>
-        <div className="flex space-x-4">
-          <div className="flex items-center space-x-2">
-            <Filter size={20} className="text-gray-500" />
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value as TransactionCategory | "all")}
-              className="rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            >
-              <option value="all">All Categories</option>
-              {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </option>
-              ))}
-            </select>
-          </div>
-          <input
-            type="date"
-            value={dateFilter}
-            onChange={(e) => setDateFilter(e.target.value)}
-            className="rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
-        </div>
-      </div>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
+  <h2 className="text-xl font-semibold">Transactions</h2>
+  <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-4 sm:space-y-0">
+    <div className="flex items-center space-x-2">
+      <Filter size={20} className="text-gray-500" />
+      <select
+        value={categoryFilter}
+        onChange={(e) => setCategoryFilter(e.target.value as TransactionCategory | "all")}
+        className="rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+      >
+        <option value="all">All Categories</option>
+        {categories.map((category) => (
+          <option key={category} value={category}>
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </option>
+        ))}
+      </select>
+    </div>
+    <input
+      type="date"
+      value={dateFilter}
+      onChange={(e) => setDateFilter(e.target.value)}
+      className="rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+    />
+  </div>
+</div>
+
 
       <div className="space-y-4">
         {filteredTransactions.length === 0 ? (

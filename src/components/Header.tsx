@@ -4,45 +4,56 @@ import { Wallet } from 'lucide-react';
 
 const Header = () => {
   const transactions = useSelector((state: RootState) => state.finance.transactions);
-  const currentMonth = new Date().toLocaleString('default', {day: 'numeric', month: 'long', year: 'numeric' });
-  const currentTime = new Date().toLocaleTimeString();
-  
+  const currentDate = new Date();
+  const currentMonth = currentDate.toLocaleString('default', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  const currentTime = currentDate.toLocaleTimeString();
+
   const totalIncome = transactions
-    .filter(t => t.type === 'income')
-    .reduce((sum, t) => sum + t.amount, 0);
-  
-  const totalExpenses = transactions
-    .filter(t => t.type === 'expense')
+    .filter((t) => t.type === 'income')
     .reduce((sum, t) => sum + t.amount, 0);
 
+  const totalExpenses = transactions
+    .filter((t) => t.type === 'expense')
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  const balance = totalIncome - totalExpenses;
+
   return (
-    <header className="bg-indigo-600 text-white">
+    <header className="bg-indigo-600 text-white shadow-md">
       <div className="container mx-auto px-4 py-6">
-        <div className="flex items-center justify-between">
+        {/* Top Section */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          {/* Left: Logo */}
           <div className="flex items-center space-x-3">
-            <Wallet size={32} />
-            <h1 className="text-2xl font-bold">Finance Tracker</h1>
+            <Wallet size={36} className="text-white" />
+            <h1 className="text-3xl font-bold">Finance Tracker</h1>
           </div>
-          <div className="flex space-x-6">
+
+          {/* Right: Financial Info */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
             <div>
               <p className="text-sm text-indigo-200">Income</p>
-              <p className="font-semibold">₹{totalIncome.toFixed(2)}</p>
+              <p className="text-lg font-semibold">₹{totalIncome.toFixed(2)}</p>
             </div>
             <div>
               <p className="text-sm text-indigo-200">Expenses</p>
-              <p className="font-semibold">₹{totalExpenses.toFixed(2)}</p>
+              <p className="text-lg font-semibold">₹{totalExpenses.toFixed(2)}</p>
             </div>
             <div>
               <p className="text-sm text-indigo-200">Balance</p>
-              <p className="font-semibold">₹{(totalIncome - totalExpenses).toFixed(2)}</p>
+              <p className="text-lg font-semibold">₹{balance.toFixed(2)}</p>
             </div>
           </div>
         </div>
-        {/* <p className="mt-2 text-indigo-200">{currentMonth}{currentTime}</p> */}
 
-        <div className="flex gap-10">
-        <p className="mt-2 text-indigo-200">{currentMonth}</p>
-        <p className="mt-2 text-indigo-200">{currentTime}</p>
+        {/* Date and Time */}
+        <div className="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center text-indigo-200 text-sm">
+          <p>{currentMonth}</p>
+          <p>{currentTime}</p>
         </div>
       </div>
     </header>
