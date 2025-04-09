@@ -25,15 +25,13 @@ const Header = () => {
   return (
     <header className="bg-indigo-600 text-white shadow-md">
       <div className="container mx-auto px-4 py-6">
-        {/* Top Section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          {/* Left: Logo */}
+          
           <div className="flex items-center space-x-3">
             <Wallet size={36} className="text-white" />
             <h1 className="text-3xl font-bold">Finance Tracker</h1>
           </div>
 
-          {/* Right: Financial Info */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
             <div>
               <p className="text-sm text-indigo-200">Income</p>
@@ -50,7 +48,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Date and Time */}
         <div className="mt-4 flex gap-5 text-indigo-200">
           <p>{currentMonth}</p>
           <p>{currentTime}</p>
