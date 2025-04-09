@@ -26,6 +26,7 @@ const TransactionList = () => {
     return matchesCategory && matchesDate;
   });
 
+
   const categories: TransactionCategory[] = [
     "food",
     "transport",
@@ -44,10 +45,23 @@ const TransactionList = () => {
   };
 
   const handleSave = () => {
+    if (
+      !editData.description?.trim() ||
+      !editData.amount ||
+      editData.amount <= 0 ||
+      !editData.category ||
+      !editData.type ||
+      !editData.date
+    ) {
+      alert("Please fill out all fields correctly before saving.");
+      return;
+    }
+  
     dispatch(updateTransaction(editData as Transaction));
     setEditId(null);
     setEditData({});
   };
+
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
@@ -71,12 +85,12 @@ const TransactionList = () => {
               ))}
             </select>
           </div>
-          <input
+          {/* <input
             type="date"
             value={dateFilter}
             onChange={(e) => setDateFilter(e.target.value)}
             className="rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-          />
+          /> */}
         </div>
       </div>
 
@@ -96,44 +110,75 @@ const TransactionList = () => {
           <div className="flex-1">
             {isEditing ? (
               <>
-                <input
-                  value={editData.description || ""}
-                  onChange={(e) =>
-                    setEditData({
-                      ...editData,
-                      description: e.target.value,
-                    })
-                  }
-                  className="w-full border p-2 rounded mb-2"
-                />
-                <input
-                  type="number"
-                  value={editData.amount || 0}
-                  onChange={(e) =>
-                    setEditData({
-                      ...editData,
-                      amount: parseFloat(e.target.value),
-                    })
-                  }
-                  className="w-full border p-2 rounded mb-2"
-                />
-                <select
-                  value={editData.category || ""}
-                  onChange={(e) =>
-                    setEditData({
-                      ...editData,
-                      category: e.target.value as TransactionCategory,
-                    })
-                  }
-                  className="w-full border p-2 rounded"
-                >
-                  {categories.map((cat) => (
-                    <option key={cat} value={cat}>
-                      {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                    </option>
-                  ))}
-                </select>
-              </>
+              <input
+                value={editData.description || ""}
+                onChange={(e) =>
+                  setEditData({
+                    ...editData,
+                    description: e.target.value,
+                  })
+                }
+                placeholder="Description"
+                className="w-full border p-2 rounded mb-2"
+              />
+              <input
+                type="number"
+                value={editData.amount || ""}
+                onChange={(e) =>
+                  setEditData({
+                    ...editData,
+                    amount: parseFloat(e.target.value),
+                  })
+                }
+                placeholder="Amount"
+                className="w-full border p-2 rounded mb-2"
+              />
+              <select
+                value={editData.category || ""}
+                onChange={(e) =>
+                  setEditData({
+                    ...editData,
+                    category: e.target.value as TransactionCategory,
+                  })
+                }
+                className="w-full border p-2 rounded mb-2"
+              >
+                <option value="">Select Category</option>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  </option>
+                ))}
+              </select>
+            
+              <select
+                value={editData.type || ""}
+                onChange={(e) =>
+                  setEditData({
+                    ...editData,
+                    type: e.target.value as "income" | "expense",
+                  })
+                }
+                className="w-full border p-2 rounded mb-2"
+              >
+                <option value="">Select Type</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            
+              <input
+                type="date"
+                value={editData.date || ""}
+                onChange={(e) =>
+                  setEditData({
+                    ...editData,
+                    date: e.target.value,
+                  })
+                }
+                className="w-full border p-2 rounded"
+              />
+            </>
+            
             ) : (
               <>
                 <p className="font-medium">{transaction.description}</p>

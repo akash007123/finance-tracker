@@ -22,6 +22,9 @@ const Header = () => {
 
   const balance = totalIncome - totalExpenses;
 
+ 
+
+
   return (
     <header className="bg-indigo-600 text-white shadow-md">
       <div className="container mx-auto px-4 py-6">
