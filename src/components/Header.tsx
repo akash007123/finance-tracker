@@ -51,7 +51,7 @@ const Header = () => {
         </div>
 
         {/* Date and Time */}
-        <div className="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center text-indigo-200 text-sm">
+        <div className="mt-4 flex gap-5 text-indigo-200">
           <p>{currentMonth}</p>
           <p>{currentTime}</p>
         </div>
