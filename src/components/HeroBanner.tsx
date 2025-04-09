@@ -26,10 +26,8 @@ const HeroBanner = () => {
     ? (totalExpenses / currentBudget) * 100
     : 0;
 
-
-    // Popup
+  // Popup
   const [showPopup, setShowPopup] = useState(false);
-
 
   const handleSetBudget = () => {
     const amount = parseFloat(newBudget);
@@ -72,6 +70,7 @@ const HeroBanner = () => {
             </div>
           </div>
 
+          {/* Set Budget Button */}
           <div className="mt-6">
             <div className="flex justify-between text-sm mb-2">
               <span>Budget Usage</span>
@@ -85,12 +84,21 @@ const HeroBanner = () => {
             </div>
           </div>
 
-          <button
-            onClick={() => setShowPopup(true)}
-            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition mt-5"
-          >
-            Set Your Budget 
-          </button>
+          {/* Set Budget Button */}
+          <div className="relative inline-block mt-5 group">
+            <div className="absolute top-0 left-0 w-4 h-4 border-t-4 border-l-4 border-violet-900 rounded-tl-md transition-all duration-300 group-hover:border-white" />
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-4 border-r-4 border-violet-900 rounded-tr-md transition-all duration-300 group-hover:border-white" />
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-4 border-l-4 border-violet-900 rounded-bl-md transition-all duration-300 group-hover:border-white" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-4 border-r-4 border-violet-900 rounded-br-md transition-all duration-300 group-hover:border-white" />
+
+            <button
+              onClick={() => setShowPopup(true)}
+              style={{borderRadius:"15px"}}
+              className="bg-gray-100 text-violet-500 font-bold px-6 py-4  hover:bg-violet-700 hover:text-white transition-all duration-300"
+            >
+              Set Your Budget
+            </button>
+          </div>
 
           {showPopup && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

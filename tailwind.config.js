@@ -2,7 +2,13 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      borderWidth: {
+        5: '5px',
+        6: '6px',
+        7: '7px',
+      },
+    },
   },
   plugins: [],
 };
