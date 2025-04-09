@@ -27,42 +27,23 @@ const AddTransaction = () => {
     "other",
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
     const transaction: Transaction = {
       id: crypto.randomUUID(),
       ...formData,
       amount: parseFloat(formData.amount),
     };
-
-     // 🔹 Get existing cookie data
-  const existingCookie = document.cookie
-  .split('; ')
-  .find((row) => row.startsWith('transactions='));
-
-const existingTransactions = existingCookie
-  ? JSON.parse(decodeURIComponent(existingCookie.split('=')[1]))
-  : [];
-
-// 🔹 Add new transaction
-const updatedTransactions = [...existingTransactions, transaction];
-
-// 🔹 Save back to cookie
-document.cookie = `transactions=${encodeURIComponent(
-  JSON.stringify(updatedTransactions)
-)}; path=/; max-age=${60 * 60 * 24 * 7}`; // expires in 7 days
-
-
-    // 🔹 Save to sessionStorage
-    const existingData = JSON.parse(
-      sessionStorage.getItem("transactions") || "[]"
-    );
-    sessionStorage.setItem(
-      "transactions",
-      JSON.stringify([...existingData, transaction])
-    );
-
+  
+    // Send transaction to backend
+    // await fetch("http://localhost:5000/api/transactions", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(transaction),
+    // });
+  
+  
     dispatch(addTransaction(transaction));
     setFormData({
       type: "expense",
@@ -73,6 +54,7 @@ document.cookie = `transactions=${encodeURIComponent(
     });
     setIsOpen(false);
   };
+  
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6 mb-8">

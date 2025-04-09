@@ -74,22 +74,21 @@ const HeroBanner = () => {
         </div>
 
         <div className="mt-6">
-        <div className="flex items-center gap-2">
-  <input
-    type="number"
-    value={newBudget}
-    onChange={(e) => setNewBudgetValue(e.target.value)}
-    placeholder="Set budget for this month"
-    className="p-2 rounded text-black w-full md:w-1/3 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-  />
-  <button
-    onClick={handleSetBudget}
-    className="bg-white text-indigo-600 font-semibold px-4 py-2 rounded hover:bg-indigo-100"
-  >
-    Set Budget
-  </button>
-</div>
-
+          <div className="flex items-center gap-2">
+            <input
+              type="number"
+              value={newBudget}
+              onChange={(e) => setNewBudgetValue(e.target.value)}
+              placeholder="Set budget for this month"
+              className="p-2 rounded text-black w-full md:w-1/3 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            />
+            <button
+              onClick={handleSetBudget}
+              className="bg-white text-indigo-600 font-semibold px-4 py-2 rounded hover:bg-indigo-100"
+            >
+              Set Budget
+            </button>
+          </div>
         </div>
       </div>
     </div>

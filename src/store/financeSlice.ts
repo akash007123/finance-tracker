@@ -16,6 +16,10 @@ const financeSlice = createSlice({
   name: 'finance',
   initialState,
   reducers: {
+    setTransactions: (state, action: PayloadAction<Transaction[]>) => {
+      state.transactions = action.payload;
+    },
+    
     addTransaction: (state, action: PayloadAction<Transaction>) => {
       state.transactions.push(action.payload);
     },

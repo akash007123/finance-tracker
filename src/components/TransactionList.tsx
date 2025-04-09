@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
-import { deleteTransaction, updateTransaction } from "../store/financeSlice";
+import { deleteTransaction, updateTransaction, } from "../store/financeSlice";
 import { Transaction, TransactionCategory } from "../types";
 import { Trash2, Filter, Pencil, Save } from "lucide-react";
 
@@ -14,6 +14,8 @@ const TransactionList = () => {
 
   const [editId, setEditId] = useState<string | null>(null);
   const [editData, setEditData] = useState<Partial<Transaction>>({});
+
+ 
 
   const filteredTransactions = transactions.filter((transaction) => {
     const matchesCategory = categoryFilter === "all" || transaction.category === categoryFilter;

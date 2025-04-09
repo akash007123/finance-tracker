@@ -4,7 +4,8 @@ import { Wallet } from 'lucide-react';
 
 const Header = () => {
   const transactions = useSelector((state: RootState) => state.finance.transactions);
-  const currentMonth = new Date().toLocaleString('default', { month: 'long', year: 'numeric' });
+  const currentMonth = new Date().toLocaleString('default', {day: 'numeric', month: 'long', year: 'numeric' });
+  const currentTime = new Date().toLocaleTimeString();
   
   const totalIncome = transactions
     .filter(t => t.type === 'income')
@@ -37,7 +38,12 @@ const Header = () => {
             </div>
           </div>
         </div>
+        {/* <p className="mt-2 text-indigo-200">{currentMonth}{currentTime}</p> */}
+
+        <div className="flex gap-10">
         <p className="mt-2 text-indigo-200">{currentMonth}</p>
+        <p className="mt-2 text-indigo-200">{currentTime}</p>
+        </div>
       </div>
     </header>
   );
