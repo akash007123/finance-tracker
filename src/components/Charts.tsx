@@ -80,11 +80,13 @@ const Charts = () => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 container py-16 px-6">
+      <div className="gap-5">
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-xl font-semibold mb-4">Expense Distribution</h2>
         <Pie data={pieData} options={{ plugins: { legend: { position: 'right' } } }} />
       </div>
+      <br />
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-xl font-semibold mb-4">Monthly Overview</h2>
         <Bar
@@ -98,6 +100,7 @@ const Charts = () => {
             },
           }}
         />
+      </div>
       </div>
     </div>
   );

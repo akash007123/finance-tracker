@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import { setBudget } from "../store/financeSlice";
-import { TrendingUp, Target } from "lucide-react";
+import { TrendingUp, Target, BadgeDollarSign } from "lucide-react";
 import { useState } from "react";
 
 const HeroBanner = () => {
@@ -37,8 +37,12 @@ const HeroBanner = () => {
   return (
     <div className="relative bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl p-8 text-white overflow-hidden">
       <div className="absolute top-0 right-0 opacity-10">
-        <TrendingUp size={180} />
+        <TrendingUp size={400} />
       </div>
+      <div className="absolute top-0 left-0 opacity-10">
+        <BadgeDollarSign size={250} />
+      </div>
+      
       <div className="relative z-10">
         <div className="flex items-center space-x-3 mb-4">
           <Target size={24} />

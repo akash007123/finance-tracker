@@ -36,13 +36,6 @@ const AddTransaction = () => {
       amount: parseFloat(formData.amount),
     };
   
-    // Send transaction to backend
-    // await fetch("http://localhost:5000/api/transactions", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(transaction),
-    // });
-  
   
     dispatch(addTransaction(transaction));
     setFormData({
